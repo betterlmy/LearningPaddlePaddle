@@ -1,3 +1,4 @@
-import paddle
+from time import sleep
 
-paddle.utils.run_check()
+sleep(3)
+print(1)

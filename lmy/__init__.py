@@ -4,21 +4,21 @@ import zipfile
 
 
 def get_size_type(path, sizeDict=None, typeDict=None):
-    """遍历获取当前目录下所有的文件类型和数量
+    """遍历获取当前目录下所有的文件类型和数量(包括子目录)
 
     Args:
         path (string): 获取文件的路径
-        sizeDict (_type_, optional): _description_. Defaults to None.
-        typeDict (_type_, optional): _description_. Defaults to None.
+        sizeDict (Dict, optional): _description_. Defaults to None.
+        typeDict (Dict, optional): _description_. Defaults to None.
 
     Returns:
-        _type_: _description_
+        Dict: _description_
     """
     if typeDict is None:
         typeDict = {}
     if sizeDict is None:
         sizeDict = {}
-    files = os.listdir(path)
+    files = os.listdir(path)# 获取所有的文件和文件夹名
     for fileName in files:
         tmpPath = os.path.join(path, fileName)
         if os.path.isdir(tmpPath):
@@ -46,3 +46,7 @@ def unzip_data(src_path, dest_path):
         z = zipfile.ZipFile(src_path, 'r')
         z.extractall(path=dest_path)
         z.close()
+
+
+if __name__ == '__main__':
+    print(get_size_type("../"))
